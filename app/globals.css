@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+:root {
+  --brand-500: #1a8faa;
+  --brand-700: #0d6b80;
+  --accent-500: #e07a5f;
+  --accent-600: #c96a52;
+  --ink-950: #1a2b36;
+  --surface-50: #faf8f6;
+  --surface-100: #f3efeb;
+  --success: #3d8b6e;
+  --warning: #d4922a;
+  --font-sans:
+    "Aptos", "Segoe UI Variable", "Segoe UI", "Helvetica Neue", Helvetica,
+    Arial, sans-serif;
+  --font-display:
+    "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 16px;
+  color: var(--ink-950);
+  background-color: var(--surface-50);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  letter-spacing: -0.03em;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+::selection {
+  background: rgba(26, 143, 170, 0.18);
+}

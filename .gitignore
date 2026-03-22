@@ -1,0 +1,16 @@
+node_modules/
+.next/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+deploy_config.env
+!deploy_config.env.example
+deploy_runtime.env
+deploy_app.env
+*.tar.gz
+.claude/
+CLAUDE.md
+skills/
+text.txt

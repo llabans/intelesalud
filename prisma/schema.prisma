@@ -1,0 +1,350 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                      String                 @id @default(cuid())
+  firebaseUid             String                 @unique
+  email                   String?                @unique
+  name                    String?
+  image                   String?
+  phone                   String?
+  role                    String                 @default("PATIENT") // 'PATIENT', 'SPECIALIST', 'ADMIN'
+  createdAt               DateTime               @default(now())
+  updatedAt               DateTime               @updatedAt
+
+  patientProfile          PatientProfile?
+  specialistProfile       SpecialistProfile?
+  auditLogs               AuditLog[]
+  authEvents              AuthEvent[]
+  appointmentMessages     AppointmentMessage[]
+  assistantConversations  AssistantConversation[]
+  assistantMessages       AssistantMessage[]     @relation("AssistantAuthor")
+  documentsIssued         Document[]             @relation("DocumentIssuer")
+  clinicalRecordsAuthored ClinicalRecord[]       @relation("ClinicalAuthor")
+}
+
+model AuthEvent {
+  id        String   @id @default(cuid())
+  userId    String?
+  user      User?    @relation(fields: [userId], references: [id])
+  eventName String
+  ipHash    String
+  userAgent String?  @db.Text
+  detail    String?  @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([createdAt])
+  @@index([eventName])
+}
+
+model PatientProfile {
+  id                    String              @id @default(cuid())
+  userId                String              @unique
+  user                  User                @relation(fields: [userId], references: [id])
+  firstName             String
+  lastName              String
+  fullName              String?
+  phone                 String?
+  dateOfBirth           DateTime?
+  medicalHistory        String?
+  careIntent            String?
+  preferredSpecialtyId  String?
+  preferredSpecialty    Specialty?          @relation("PreferredSpecialty", fields: [preferredSpecialtyId], references: [id])
+  location              String?
+  attentionPreference   String?
+  onboardingCompletedAt DateTime?
+
+  appointments          Appointment[]
+  consentRecords        ConsentRecord[]
+  documents             Document[]
+  clinicalRecords       ClinicalRecord[]
+  reviews               AppointmentReview[]
+
+  @@index([preferredSpecialtyId])
+}
+
+model SpecialistProfile {
+  id              String               @id @default(cuid())
+  userId          String               @unique
+  user            User                 @relation(fields: [userId], references: [id])
+  firstName       String
+  lastName        String
+  title           String
+  bio             String?
+  slug            String               @unique
+  photoUrl        String?
+  headline        String?
+  experienceYears Int?
+  specialistYears Int?
+  university      String?
+  ratingAverage   Float                @default(0)
+  ratingCount     Int                  @default(0)
+  featured        Boolean              @default(false)
+  licenseCode     String?
+
+  services        Service[]
+  availability    AvailabilitySlot[]
+  appointments    Appointment[]
+  specialties     SpecialistSpecialty[]
+  reviews         AppointmentReview[]
+}
+
+model Specialty {
+  id                  String               @id @default(cuid())
+  slug                String               @unique
+  name                String               @unique
+  description         String
+  summary             String?
+  icon                String?
+  color               String?
+
+  services            Service[]
+  specialists         SpecialistSpecialty[]
+  preferredByPatients PatientProfile[]     @relation("PreferredSpecialty")
+  clinicalRecords     ClinicalRecord[]
+}
+
+model SpecialistSpecialty {
+  id           String            @id @default(cuid())
+  specialistId String
+  specialtyId  String
+  isPrimary    Boolean           @default(false)
+
+  specialist   SpecialistProfile @relation(fields: [specialistId], references: [id])
+  specialty    Specialty         @relation(fields: [specialtyId], references: [id])
+
+  @@unique([specialistId, specialtyId])
+  @@index([specialtyId])
+}
+
+model Service {
+  id              String            @id @default(cuid())
+  specialistId    String
+  specialtyId     String
+  specialist      SpecialistProfile @relation(fields: [specialistId], references: [id])
+  specialty       Specialty         @relation(fields: [specialtyId], references: [id])
+  name            String
+  description     String
+  duration        String
+  durationMinutes Int               @default(40)
+  price           Float
+  currency        String            @default("PEN")
+  mode            String            @default("VIRTUAL")
+  isActive        Boolean           @default(true)
+
+  appointments    Appointment[]
+
+  @@index([specialtyId])
+}
+
+model AvailabilitySlot {
+  id           String            @id @default(cuid())
+  specialistId String
+  specialist   SpecialistProfile @relation(fields: [specialistId], references: [id])
+  startTime    DateTime
+  endTime      DateTime
+  isBooked     Boolean           @default(false)
+
+  appointment  Appointment?
+
+  @@index([specialistId, startTime])
+}
+
+model Appointment {
+  id              String            @id @default(cuid())
+  patientId       String
+  specialistId    String
+  serviceId       String
+  slotId          String            @unique
+  status          String
+  intakeNotes     String?
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
+
+  patient         PatientProfile    @relation(fields: [patientId], references: [id])
+  specialist      SpecialistProfile @relation(fields: [specialistId], references: [id])
+  service         Service           @relation(fields: [serviceId], references: [id])
+  slot            AvailabilitySlot  @relation(fields: [slotId], references: [id])
+  payment         Payment?
+  meetingSession  MeetingSession?
+  paymentVoucher  PaymentVoucher?
+  messages        AppointmentMessage[]
+  documents       Document[]
+  clinicalRecords ClinicalRecord[]
+  review          AppointmentReview?
+
+  @@index([patientId])
+  @@index([status, createdAt])
+}
+
+model Payment {
+  id            String      @id @default(cuid())
+  appointmentId String      @unique
+  amount        Float
+  currency      String
+  provider      String
+  providerId    String?     @unique
+  status        String
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+}
+
+model PaymentVoucher {
+  id            String      @id @default(cuid())
+  appointmentId String      @unique
+  imageUrl      String
+  status        String      @default("PENDING")
+  reviewedBy    String?
+  reviewedAt    DateTime?
+  createdAt     DateTime    @default(now())
+
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+
+  @@index([status, createdAt])
+}
+
+model MeetingSession {
+  id              String      @id @default(cuid())
+  appointmentId   String      @unique
+  provider        String
+  providerEventId String?     @unique
+  joinUrl         String?
+  status          String
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+
+  appointment     Appointment @relation(fields: [appointmentId], references: [id])
+}
+
+model AppointmentMessage {
+  id            String      @id @default(cuid())
+  appointmentId String
+  authorId      String
+  body          String      @db.Text
+  createdAt     DateTime    @default(now())
+
+  appointment   Appointment @relation(fields: [appointmentId], references: [id])
+  author        User        @relation(fields: [authorId], references: [id])
+
+  @@index([appointmentId, createdAt])
+  @@index([authorId])
+}
+
+model Document {
+  id            String         @id @default(cuid())
+  patientId     String
+  appointmentId String?
+  issuedById    String?
+  kind          String
+  title         String
+  summary       String?        @db.Text
+  fileUrl       String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  patient       PatientProfile @relation(fields: [patientId], references: [id])
+  appointment   Appointment?   @relation(fields: [appointmentId], references: [id])
+  issuedBy      User?          @relation("DocumentIssuer", fields: [issuedById], references: [id])
+
+  @@index([patientId, kind])
+  @@index([appointmentId])
+}
+
+model ClinicalRecord {
+  id            String         @id @default(cuid())
+  patientId     String
+  appointmentId String?
+  specialtyId   String?
+  authorId      String?
+  entryType     String
+  title         String
+  summary       String         @db.Text
+  recordedAt    DateTime       @default(now())
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  patient       PatientProfile @relation(fields: [patientId], references: [id])
+  appointment   Appointment?   @relation(fields: [appointmentId], references: [id])
+  specialty     Specialty?     @relation(fields: [specialtyId], references: [id])
+  author        User?          @relation("ClinicalAuthor", fields: [authorId], references: [id])
+
+  @@index([patientId, recordedAt])
+}
+
+model AppointmentReview {
+  id            String            @id @default(cuid())
+  appointmentId String            @unique
+  patientId     String
+  specialistId  String
+  rating        Int
+  comment       String?           @db.Text
+  createdAt     DateTime          @default(now())
+  updatedAt     DateTime          @updatedAt
+
+  appointment   Appointment       @relation(fields: [appointmentId], references: [id])
+  patient       PatientProfile    @relation(fields: [patientId], references: [id])
+  specialist    SpecialistProfile @relation(fields: [specialistId], references: [id])
+
+  @@index([specialistId, rating])
+}
+
+model AssistantConversation {
+  id        String             @id @default(cuid())
+  userId    String?
+  channel   String
+  title     String?
+  status    String             @default("OPEN")
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+
+  user      User?              @relation(fields: [userId], references: [id])
+  messages  AssistantMessage[]
+
+  @@index([userId, channel])
+}
+
+model AssistantMessage {
+  id             String                @id @default(cuid())
+  conversationId String
+  authorId       String?
+  role           String
+  content        String                @db.Text
+  metadata       String?               @db.Text
+  createdAt      DateTime              @default(now())
+
+  conversation   AssistantConversation @relation(fields: [conversationId], references: [id])
+  author         User?                 @relation("AssistantAuthor", fields: [authorId], references: [id])
+
+  @@index([conversationId, createdAt])
+}
+
+model ConsentRecord {
+  id              String         @id @default(cuid())
+  patientId       String
+  documentVersion String
+  ipAddress       String?
+  acceptedAt      DateTime       @default(now())
+
+  patient         PatientProfile @relation(fields: [patientId], references: [id])
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  userId     String?
+  action     String
+  entityType String
+  entityId   String
+  details    String?
+  createdAt  DateTime @default(now())
+
+  user       User?    @relation(fields: [userId], references: [id])
+}

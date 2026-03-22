@@ -1,0 +1,10 @@
+cd /var/www/intelesalud
+git pull origin main
+npm ci
+set -a
+source .env.production
+set +a
+npx prisma db push
+npm run build
+sudo systemctl restart intelesalud
+sudo systemctl reload nginx
