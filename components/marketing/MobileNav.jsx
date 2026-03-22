@@ -11,6 +11,7 @@ const NAV_ITEMS = [
   ['/especialidades', 'Especialidades'],
   ['/profesionales', 'Profesionales'],
   ['/faq', 'FAQ'],
+  ['/#salud-al-dia', 'Salud al Día'],
 ];
 
 export default function MobileNav({ user }) {

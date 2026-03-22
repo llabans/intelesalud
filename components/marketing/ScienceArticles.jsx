@@ -1,4 +1,4 @@
-import { BookOpen, ExternalLink, Calendar } from 'lucide-react';
+import { BookOpen, Calendar } from 'lucide-react';
 
 /**
  * "Ciencia y Salud al Día" section.
@@ -55,12 +55,12 @@ function formatDate(dateStr) {
 
 export default function ScienceArticles({ articles = SAMPLE_ARTICLES }) {
   return (
-    <section className="mx-auto max-w-7xl px-4 md:px-6">
+    <section id="salud-al-dia" className="mx-auto max-w-7xl scroll-mt-24 px-4 md:px-6">
       <div className="text-center">
-        <p className="section-label">Evidencia clínica</p>
-        <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">Ciencia y Salud al Día</h2>
+        <p className="section-label">Actualidad médica</p>
+        <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">¿Sabías que...? Salud al Día</h2>
         <p className="mx-auto mt-3 max-w-2xl text-base text-slate-500">
-          Artículos científicos recientes, resumidos para ti por nuestro equipo clínico.
+          Descubrimientos recientes que pueden mejorar tu bienestar, explicados de forma simple.
         </p>
       </div>
 
@@ -81,10 +81,15 @@ export default function ScienceArticles({ articles = SAMPLE_ARTICLES }) {
               </span>
             </div>
 
-            {/* Title */}
-            <h3 className="mt-4 text-base font-bold leading-snug text-slate-900 group-hover:text-cyan-800 transition-colors">
+            {/* Title — clickable link */}
+            <a
+              href={article.url || (article.pubmedId ? `https://pubmed.ncbi.nlm.nih.gov/${article.pubmedId}/` : '#')}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 block text-base font-bold leading-snug text-slate-900 transition-colors group-hover:text-cyan-800"
+            >
               {article.title}
-            </h3>
+            </a>
 
             {/* Summary */}
             <p className="mt-3 flex-1 text-sm leading-6 text-slate-500">
@@ -105,16 +110,6 @@ export default function ScienceArticles({ articles = SAMPLE_ARTICLES }) {
                   {article.source}
                 </span>
               </div>
-              {article.pubmedId && (
-                <a
-                  href={article.url || `https://pubmed.ncbi.nlm.nih.gov/${article.pubmedId}/`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-cyan-800 transition hover:text-cyan-600"
-                >
-                  Leer más <ExternalLink className="h-3 w-3" />
-                </a>
-              )}
             </div>
           </article>
         ))}
