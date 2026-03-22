@@ -1,7 +1,15 @@
 import './globals.css';
+import { Plus_Jakarta_Sans } from 'next/font/google';
 import { Suspense } from 'react';
 import { AuthProvider } from '@/components/AuthProvider';
 import AnalyticsProvider from '@/components/analytics/AnalyticsProvider';
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  variable: '--font-jakarta',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+});
 
 export const metadata = {
   title: 'InteleSalud | Telemedicina multiespecialidad',
@@ -34,8 +42,8 @@ const jsonLd = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="es">
-      <body className="min-h-screen bg-[radial-gradient(circle_at_top,rgba(26,143,170,0.06),transparent_28%),linear-gradient(180deg,#faf8f6_0%,#f3efeb_100%)] text-slate-900 antialiased">
+    <html lang="es" className={jakarta.variable}>
+      <body className="bg-gradient-animated min-h-screen font-[var(--font-sans)] text-slate-900 antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

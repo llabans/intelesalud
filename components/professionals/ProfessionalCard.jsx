@@ -8,7 +8,7 @@ export default function ProfessionalCard({ professional, showBooking = true }) {
     : '/portal/agendar';
 
   return (
-    <article className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-xl hover:shadow-slate-950/5">
+    <article className="overflow-hidden rounded-[28px] border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-xl hover:shadow-[var(--brand-500)]/10 hover:border-[var(--brand-500)]/30">
       <div className="aspect-[5/4] overflow-hidden bg-slate-100">
         {professional.photoUrl ? (
           <img
@@ -22,8 +22,13 @@ export default function ProfessionalCard({ professional, showBooking = true }) {
       <div className="space-y-4 p-6">
         <div className="flex items-center justify-between gap-3">
           <div>
-            <p className="text-lg font-semibold text-slate-950">{professional.name}</p>
-            <p className="text-sm text-sky-700">{professional.title}</p>
+            <div className="flex items-center gap-2">
+              <p className="text-lg font-bold text-slate-950">{professional.name}</p>
+              <span className="inline-flex items-center rounded-full bg-[var(--brand-500)]/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-[var(--brand-700)]">
+                Verificado
+              </span>
+            </div>
+            <p className="text-sm font-medium text-[var(--brand-700)]">{professional.title}</p>
           </div>
           <div className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
             {professional.experienceYears || 0} anios
@@ -34,7 +39,7 @@ export default function ProfessionalCard({ professional, showBooking = true }) {
 
         <div className="flex flex-wrap gap-2 text-xs text-slate-500">
           {professional.specialties.map((specialty) => (
-            <span key={specialty.slug} className="rounded-full bg-slate-100 px-3 py-1">
+            <span key={specialty.slug} className="rounded-full bg-[var(--brand-500)]/8 px-3 py-1 text-[var(--brand-700)]">
               {specialty.name}
             </span>
           ))}
@@ -68,7 +73,7 @@ export default function ProfessionalCard({ professional, showBooking = true }) {
         {showBooking ? (
           <Link
             href={bookingHref}
-            className="inline-flex w-full items-center justify-center rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+            className="btn-primary inline-flex w-full items-center justify-center rounded-full px-4 py-3 text-sm font-bold"
           >
             Reservar cita
           </Link>

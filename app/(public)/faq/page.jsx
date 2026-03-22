@@ -4,7 +4,7 @@ export default function FAQPage() {
   return (
     <div className="mx-auto max-w-5xl space-y-10 px-4 py-14 md:px-6">
       <div className="max-w-3xl space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">Preguntas frecuentes</p>
+        <p className="section-label">Preguntas frecuentes</p>
         <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Transparencia antes de la primera teleconsulta</h1>
         <p className="text-lg leading-8 text-slate-600">
           Respuestas sobrias sobre acceso, reservas, pagos, portal y alcance administrativo del asistente.

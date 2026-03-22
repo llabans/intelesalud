@@ -12,7 +12,7 @@ export default async function ProfessionalsPage({ searchParams }) {
   return (
     <div className="mx-auto max-w-7xl space-y-10 px-4 py-14 md:px-6">
       <div className="max-w-3xl space-y-4">
-        <p className="text-xs font-semibold uppercase tracking-[0.22em] text-sky-700">Directorio medico</p>
+        <p className="section-label">Directorio medico</p>
         <h1 className="text-4xl font-semibold tracking-tight text-slate-950">Filtra por experiencia, universidad, anos como especialista y valoracion</h1>
         <p className="text-lg leading-8 text-slate-600">
           El directorio de InteleSalud ya esta preparado para un marketplace profesional multiespecialidad con filtros visibles y disponibilidad mock.
