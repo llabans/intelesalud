@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Phone } from 'lucide-react';
+import { Menu, X, Phone, CalendarDays } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const NAV_ITEMS = [
   ['/', 'Inicio'],
-  ['/especialidades', 'Especialidades'],
   ['/como-funciona', 'Cómo funciona'],
+  ['/especialidades', 'Especialidades'],
   ['/profesionales', 'Profesionales'],
   ['/faq', 'FAQ'],
 ];
@@ -34,7 +34,7 @@ export default function MobileNav({ user }) {
     <div className="lg:hidden">
       <button
         onClick={() => setOpen(true)}
-        className="rounded-lg p-2 text-slate-700 hover:bg-slate-100"
+        className="rounded-lg p-2 text-slate-600 hover:bg-slate-100"
         aria-label="Abrir menú"
       >
         <Menu size={24} />
@@ -47,7 +47,7 @@ export default function MobileNav({ user }) {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/30 backdrop-blur-sm"
             onClick={() => setOpen(false)}
           />
           <motion.nav
@@ -59,7 +59,7 @@ export default function MobileNav({ user }) {
             className="absolute right-0 top-0 flex h-full w-[300px] max-w-[85vw] flex-col bg-white shadow-2xl"
           >
             <div className="flex items-center justify-between border-b border-slate-100 px-5 py-4">
-              <span className="text-sm font-semibold text-slate-950">Menú</span>
+              <span className="text-sm font-semibold text-slate-900">Menú</span>
               <button
                 onClick={() => setOpen(false)}
                 className="rounded-lg p-1.5 text-slate-500 hover:bg-slate-100"
@@ -75,7 +75,7 @@ export default function MobileNav({ user }) {
                   key={href}
                   href={href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-xl px-4 py-3 text-[15px] font-medium text-slate-700 transition-colors hover:bg-slate-50"
+                  className="block rounded-xl px-4 py-3 text-[15px] font-medium text-slate-700 transition-colors hover:bg-slate-50 hover:text-cyan-800"
                 >
                   {label}
                 </Link>
@@ -92,20 +92,19 @@ export default function MobileNav({ user }) {
                 <Phone size={16} />
                 WhatsApp: +51 970 549 203
               </a>
-              {!user && (
-                <Link
-                  href="/login"
-                  onClick={() => setOpen(false)}
-                  className="block w-full rounded-full border border-[var(--brand-500)] px-4 py-2.5 text-center text-sm font-semibold text-[var(--brand-700)] transition hover:bg-[var(--brand-500)]/10"
-                >
-                  Iniciar sesión
-                </Link>
-              )}
+              <Link
+                href={user ? '/portal' : '/login'}
+                onClick={() => setOpen(false)}
+                className="block w-full rounded-lg border border-cyan-800 px-4 py-2.5 text-center text-sm font-semibold text-cyan-800 transition hover:bg-cyan-50"
+              >
+                Portal del Paciente
+              </Link>
               <Link
                 href={user ? '/portal/agendar' : '/login?redirect=%2Fportal%2Fagendar'}
                 onClick={() => setOpen(false)}
-                className="block w-full btn-primary rounded-full px-4 py-2.5 text-center text-sm font-semibold"
+                className="btn-primary flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-center text-sm font-semibold"
               >
+                <CalendarDays className="h-4 w-4" />
                 Agendar consulta
               </Link>
             </div>

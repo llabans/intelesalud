@@ -2,13 +2,13 @@
 
 :root {
   --brand-400: #22a8c7;
-  --brand-500: #1a8faa;
-  --brand-600: #15788f;
-  --brand-700: #0d6b80;
+  --brand-500: #0E7490;
+  --brand-600: #0C6680;
+  --brand-700: #0E7490;
   --brand-800: #0a4f5e;
-  --accent-500: #e07a5f;
-  --accent-600: #c96a52;
-  --accent-700: #b25a44;
+  --accent-500: #E05236;
+  --accent-600: #C8452A;
+  --accent-700: #B03A24;
   --ink-950: #1a2b36;
   --ink-700: #3a5568;
   --ink-500: #64748b;
@@ -45,14 +45,14 @@ h4 {
 /* ── Brand Utilities ────────────────────────── */
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent-500), var(--accent-600));
+  background: #E05236;
   color: white;
-  box-shadow: 0 4px 14px rgba(224, 122, 95, 0.35);
+  box-shadow: 0 4px 14px rgba(224, 82, 54, 0.30);
   transition: all 0.2s;
 }
 .btn-primary:hover {
-  background: linear-gradient(135deg, var(--accent-600), var(--accent-700));
-  box-shadow: 0 6px 20px rgba(224, 122, 95, 0.45);
+  background: #C8452A;
+  box-shadow: 0 6px 20px rgba(224, 82, 54, 0.40);
   transform: translateY(-1px);
 }
 
