@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, CalendarDays, ShieldCheck, Video, CreditCard } from 'lucide-react';
 import ProfessionalCard from '@/components/professionals/ProfessionalCard';
+import SpecialtyCard from '@/components/marketing/SpecialtyCard';
 import AnimatedSection from '@/components/ui/AnimatedSection';
 import { StaggerContainer, StaggerItem } from '@/components/ui/AnimatedStagger';
 import { BENEFIT_ITEMS, FAQ_ITEMS, HOW_IT_WORKS_STEPS, SPECIALTY_CATALOG } from '@/lib/platform/catalog';
@@ -65,39 +66,52 @@ export default async function HomePage() {
               </div>
             </div>
 
-            {/* Right column — specialties + flow */}
-            <div className="grid gap-4">
-              <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-lg shadow-slate-900/5">
-                <p className="text-sm font-semibold text-slate-900">Especialidades disponibles</p>
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  {SPECIALTY_CATALOG.slice(0, 6).map((specialty) => (
-                    <div key={specialty.id} className="rounded-xl border border-slate-100 bg-slate-50 px-4 py-3.5">
-                      <p className="font-medium text-slate-900 text-sm">{specialty.name}</p>
-                      <p className="mt-1.5 text-xs leading-5 text-slate-500">{specialty.summary}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="rounded-2xl border border-cyan-200/60 bg-gradient-to-br from-cyan-800 to-cyan-700 p-6">
-                <p className="text-sm font-semibold text-white/90">Tu consulta en 4 pasos</p>
-                <div className="mt-4 grid gap-2.5">
-                  {HOW_IT_WORKS_STEPS.map((step, index) => (
-                    <div key={step.id} className="flex gap-3.5 rounded-xl bg-white/10 px-4 py-3 backdrop-blur-sm">
-                      <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/20 text-xs font-bold text-white">
-                        {index + 1}
-                      </span>
-                      <div>
-                        <p className="text-sm font-medium text-white">{step.title}</p>
-                        <p className="mt-0.5 text-xs leading-5 text-white/60">{step.description}</p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </section>
         </AnimatedSection>
       </div>
+
+      {/* ── Especialidades Grid ─────────────────────── */}
+      <AnimatedSection>
+        <section className="mx-auto max-w-7xl px-4 md:px-6">
+          <div className="text-center">
+            <p className="section-label">Especialidades</p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">Encuentra al especialista que necesitas</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-base text-slate-500">Cada área cuenta con profesionales certificados listos para atenderte por videoconsulta.</p>
+          </div>
+          <StaggerContainer className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {SPECIALTY_CATALOG.slice(0, 6).map((specialty) => (
+              <StaggerItem key={specialty.id}>
+                <SpecialtyCard specialty={specialty} />
+              </StaggerItem>
+            ))}
+          </StaggerContainer>
+        </section>
+      </AnimatedSection>
+
+      {/* ── Cómo funciona (4 pasos) ─────────────────── */}
+      <AnimatedSection>
+        <section className="mx-auto max-w-5xl px-4 md:px-6">
+          <div className="rounded-2xl border border-cyan-200/40 bg-gradient-to-br from-cyan-800 to-cyan-700 px-6 py-10 md:px-10">
+            <div className="text-center">
+              <p className="text-xs font-bold uppercase tracking-[0.22em] text-white/60">Proceso simple</p>
+              <h2 className="mt-2 text-2xl font-bold tracking-tight text-white">Tu consulta en 4 pasos</h2>
+            </div>
+            <StaggerContainer className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {HOW_IT_WORKS_STEPS.map((step, index) => (
+                <StaggerItem key={step.id}>
+                  <div className="rounded-xl bg-white/10 p-5 backdrop-blur-sm">
+                    <span className="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-white/20 text-sm font-bold text-white">
+                      {index + 1}
+                    </span>
+                    <p className="mt-3 text-sm font-semibold text-white">{step.title}</p>
+                    <p className="mt-1.5 text-xs leading-5 text-white/60">{step.description}</p>
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
+        </section>
+      </AnimatedSection>
 
       {/* ── Beneficios ──────────────────────────────── */}
       <AnimatedSection>
