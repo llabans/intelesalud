@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Menu, X, Phone, CalendarDays } from 'lucide-react';
+import { Menu, X, Phone, Newspaper } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 const NAV_ITEMS = [
@@ -94,19 +94,19 @@ export default function MobileNav({ user }) {
                 WhatsApp: +51 970 549 203
               </a>
               <Link
+                href="/#salud-al-dia"
+                onClick={() => setOpen(false)}
+                className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-50 px-4 py-2.5 text-sm font-semibold text-emerald-700 transition hover:bg-emerald-100"
+              >
+                <Newspaper className="h-4 w-4" />
+                Salud al Día
+              </Link>
+              <Link
                 href={user ? '/portal' : '/login'}
                 onClick={() => setOpen(false)}
                 className="block w-full rounded-lg border border-cyan-800 px-4 py-2.5 text-center text-sm font-semibold text-cyan-800 transition hover:bg-cyan-50"
               >
                 Portal del Paciente
-              </Link>
-              <Link
-                href={user ? '/portal/agendar' : '/login?redirect=%2Fportal%2Fagendar'}
-                onClick={() => setOpen(false)}
-                className="btn-primary flex w-full items-center justify-center gap-2 rounded-lg px-4 py-2.5 text-center text-sm font-semibold"
-              >
-                <CalendarDays className="h-4 w-4" />
-                Agendar consulta
               </Link>
             </div>
           </motion.nav>
