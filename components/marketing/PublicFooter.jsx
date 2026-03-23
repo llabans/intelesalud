@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import AppLogo from '@/components/ui/AppLogo';
-import { Phone, Mail, ShieldCheck, Lock } from 'lucide-react';
+import { Phone, Mail, ShieldCheck } from 'lucide-react';
 
 export default function PublicFooter() {
   return (
@@ -63,9 +63,6 @@ export default function PublicFooter() {
           <div className="flex items-center gap-4 text-xs text-slate-400">
             <span className="inline-flex items-center gap-1">
               <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Datos encriptados
-            </span>
-            <span className="inline-flex items-center gap-1">
-              <Lock className="h-3.5 w-3.5 text-cyan-700" /> HIPAA-ready
             </span>
           </div>
         </div>

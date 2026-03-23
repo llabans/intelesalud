@@ -102,7 +102,7 @@ export default function ScienceArticles() {
         <p className="section-label">Actualidad médica</p>
         <h2 className="mt-2 text-3xl font-bold tracking-tight text-slate-900">¿Sabías que...? Salud al Día</h2>
         <p className="mx-auto mt-3 max-w-2xl text-base text-slate-500">
-          Descubrimientos recientes que pueden mejorar tu bienestar, explicados de forma simple. Resumidos por IA desde PubMed.
+          Descubrimientos recientes que pueden mejorar tu bienestar, explicados de forma simple.
         </p>
         <p className="mt-1 text-sm text-slate-400">{articles.length} artículos disponibles</p>
       </div>
