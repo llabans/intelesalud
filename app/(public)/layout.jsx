@@ -1,6 +1,7 @@
 import PublicNavbar from '@/components/marketing/PublicNavbar';
 import PublicFooter from '@/components/marketing/PublicFooter';
 import AssistantWidget from '@/components/chat/AssistantWidget';
+import WhatsAppButton from '@/components/ui/WhatsAppButton';
 
 export default function PublicLayout({ children }) {
   return (
@@ -8,6 +9,7 @@ export default function PublicLayout({ children }) {
       <PublicNavbar />
       <main>{children}</main>
       <PublicFooter />
+      <WhatsAppButton />
       <AssistantWidget channel="PUBLIC" />
     </div>
   );

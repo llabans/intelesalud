@@ -85,13 +85,13 @@ export default function MobileNav({ user }) {
 
             <div className="border-t border-slate-100 px-4 py-5 space-y-3">
               <a
-                href="https://wa.me/51970549203?text=Hola,%20quiero%20información%20sobre%20InteleSalud"
+                href="https://wa.me/51921977372?text=Hola,%20quiero%20información%20sobre%20InteleSalud"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium text-green-700 bg-green-50 hover:bg-green-100 transition-colors"
               >
                 <Phone size={16} />
-                WhatsApp: +51 970 549 203
+                WhatsApp: +51 921 977 372
               </a>
               <Link
                 href="/#salud-al-dia"
