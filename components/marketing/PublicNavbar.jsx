@@ -24,15 +24,15 @@ export default function PublicNavbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-4 py-3.5 md:px-6">
         <AppLogo />
 
-        <nav className="hidden items-center gap-7 text-sm font-medium text-slate-600 lg:flex">
+        <nav className="hidden items-center gap-1.5 text-sm font-medium lg:flex">
           {NAV_ITEMS.map(([href, label]) => (
             <Link
               key={href}
               href={href}
               className={
                 pathname === href
-                  ? 'text-cyan-800 font-semibold'
-                  : 'transition-colors duration-200 hover:text-cyan-800'
+                  ? 'rounded-lg bg-cyan-50 px-3.5 py-2 font-semibold text-cyan-800'
+                  : 'rounded-lg px-3.5 py-2 text-slate-600 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900'
               }
             >
               {label}
