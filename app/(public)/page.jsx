@@ -73,12 +73,19 @@ export default async function HomePage() {
             <p className="mx-auto mt-3 max-w-2xl text-base text-slate-500">Cada área cuenta con profesionales certificados listos para atenderte por videoconsulta.</p>
           </div>
           <StaggerContainer className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {SPECIALTY_CATALOG.slice(0, 6).map((specialty) => (
+            {SPECIALTY_CATALOG.slice(0, 9).map((specialty) => (
               <StaggerItem key={specialty.id}>
                 <SpecialtyCard specialty={specialty} />
               </StaggerItem>
             ))}
           </StaggerContainer>
+          {SPECIALTY_CATALOG.length > 9 && (
+            <div className="mt-8 text-center">
+              <Link href="/especialidades" className="inline-flex items-center gap-2 rounded-lg border border-cyan-800 px-6 py-3 text-sm font-semibold text-cyan-800 transition hover:bg-cyan-50">
+                Ver las {SPECIALTY_CATALOG.length} especialidades <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          )}
         </section>
       </AnimatedSection>
 

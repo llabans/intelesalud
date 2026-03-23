@@ -171,6 +171,163 @@ const SPECIALTY_VISUALS = {
       </svg>
     ),
   },
+  'neurologia': {
+    accent: '#7C3AED',
+    accentLight: 'rgba(124,58,237,0.08)',
+    accentBorder: 'rgba(124,58,237,0.25)',
+    accentGlow: 'rgba(124,58,237,0.15)',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10">
+        <circle cx="24" cy="20" r="10" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M18 18c2-1 4 1 6 0s4-1 6 0" stroke="currentColor" strokeWidth="1" opacity="0.5" />
+        <path d="M24 30v8M20 34h8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M28 12l3-3M30 14l3 0" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" opacity="0.6" />
+      </svg>
+    ),
+    bgIllustration: (
+      <svg viewBox="0 0 200 160" fill="none" className="absolute inset-0 h-full w-full">
+        <path d="M60 80c10-20 30-25 40-15s20 25 40 20" stroke="currentColor" strokeWidth="0.6" opacity="0.08" />
+        <path d="M50 100c15-10 35-5 50 5s30 15 50 0" stroke="currentColor" strokeWidth="0.5" opacity="0.06" />
+        <circle cx="100" cy="80" r="20" stroke="currentColor" strokeWidth="0.5" opacity="0.06" strokeDasharray="3 3" />
+      </svg>
+    ),
+  },
+  'medicina-interna': {
+    accent: '#64748B',
+    accentLight: 'rgba(100,116,139,0.08)',
+    accentBorder: 'rgba(100,116,139,0.25)',
+    accentGlow: 'rgba(100,116,139,0.15)',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10">
+        <rect x="12" y="8" width="24" height="32" rx="3" stroke="currentColor" strokeWidth="1.8" />
+        <line x1="18" y1="16" x2="30" y2="16" stroke="currentColor" strokeWidth="1.2" opacity="0.5" />
+        <line x1="18" y1="22" x2="30" y2="22" stroke="currentColor" strokeWidth="1.2" opacity="0.4" />
+        <line x1="18" y1="28" x2="26" y2="28" stroke="currentColor" strokeWidth="1.2" opacity="0.3" />
+        <path d="M22 34l2 2 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+    bgIllustration: (
+      <svg viewBox="0 0 200 160" fill="none" className="absolute inset-0 h-full w-full">
+        <rect x="60" y="50" width="80" height="60" rx="6" stroke="currentColor" strokeWidth="0.5" opacity="0.06" />
+        <line x1="75" y1="70" x2="125" y2="70" stroke="currentColor" strokeWidth="0.4" opacity="0.05" />
+        <line x1="75" y1="82" x2="120" y2="82" stroke="currentColor" strokeWidth="0.4" opacity="0.04" />
+        <line x1="75" y1="94" x2="110" y2="94" stroke="currentColor" strokeWidth="0.4" opacity="0.03" />
+      </svg>
+    ),
+  },
+  'cirugia-pediatrica': {
+    accent: '#E11D48',
+    accentLight: 'rgba(225,29,72,0.08)',
+    accentBorder: 'rgba(225,29,72,0.25)',
+    accentGlow: 'rgba(225,29,72,0.15)',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10">
+        <path d="M16 12l8 18h-6l8 10" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        <circle cx="32" cy="16" r="6" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M30 14l2 2 3-3" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" opacity="0.6" />
+      </svg>
+    ),
+    bgIllustration: (
+      <svg viewBox="0 0 200 160" fill="none" className="absolute inset-0 h-full w-full">
+        <circle cx="100" cy="90" r="25" stroke="currentColor" strokeWidth="0.5" opacity="0.06" />
+        <path d="M90 80l5 5-5 5M110 80l-5 5 5 5" stroke="currentColor" strokeWidth="0.5" opacity="0.05" strokeLinecap="round" />
+        <circle cx="70" cy="70" r="6" stroke="currentColor" strokeWidth="0.4" opacity="0.05" />
+      </svg>
+    ),
+  },
+  'gastroenterologia': {
+    accent: '#EA580C',
+    accentLight: 'rgba(234,88,12,0.08)',
+    accentBorder: 'rgba(234,88,12,0.25)',
+    accentGlow: 'rgba(234,88,12,0.15)',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10">
+        <path d="M16 14c0 8 4 12 8 16s8 8 8 12" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+        <circle cx="24" cy="28" r="8" stroke="currentColor" strokeWidth="1.5" opacity="0.4" />
+      </svg>
+    ),
+    bgIllustration: (
+      <svg viewBox="0 0 200 160" fill="none" className="absolute inset-0 h-full w-full">
+        <path d="M70 60c10 20 20 30 30 40s20 15 30 10" stroke="currentColor" strokeWidth="0.5" opacity="0.07" strokeLinecap="round" />
+        <ellipse cx="110" cy="90" rx="20" ry="15" stroke="currentColor" strokeWidth="0.4" opacity="0.05" />
+      </svg>
+    ),
+  },
+  'neumologia': {
+    accent: '#0284C7',
+    accentLight: 'rgba(2,132,199,0.08)',
+    accentBorder: 'rgba(2,132,199,0.25)',
+    accentGlow: 'rgba(2,132,199,0.15)',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10">
+        <path d="M24 34V18M24 18c-4-6-12-6-12 2s8 8 12 6M24 18c4-6 12-6 12 2s-8 8-12 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      </svg>
+    ),
+    bgIllustration: (
+      <svg viewBox="0 0 200 160" fill="none" className="absolute inset-0 h-full w-full">
+        <path d="M80 90c-10-20-25-20-25 0s15 15 25 10M120 90c10-20 25-20 25 0s-15 15-25 10" stroke="currentColor" strokeWidth="0.5" opacity="0.07" />
+        <line x1="100" y1="100" x2="100" y2="130" stroke="currentColor" strokeWidth="0.4" opacity="0.05" />
+      </svg>
+    ),
+  },
+  'reumatologia': {
+    accent: '#D97706',
+    accentLight: 'rgba(217,119,6,0.08)',
+    accentBorder: 'rgba(217,119,6,0.25)',
+    accentGlow: 'rgba(217,119,6,0.15)',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10">
+        <circle cx="20" cy="24" r="4" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="28" cy="24" r="4" stroke="currentColor" strokeWidth="1.5" />
+        <line x1="24" y1="24" x2="24" y2="24" stroke="currentColor" strokeWidth="2" />
+        <path d="M14 18l-4-4M34 18l4-4M14 30l-4 4M34 30l4 4" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.4" />
+      </svg>
+    ),
+    bgIllustration: (
+      <svg viewBox="0 0 200 160" fill="none" className="absolute inset-0 h-full w-full">
+        <circle cx="80" cy="85" r="10" stroke="currentColor" strokeWidth="0.5" opacity="0.07" />
+        <circle cx="120" cy="85" r="10" stroke="currentColor" strokeWidth="0.5" opacity="0.06" />
+        <line x1="90" y1="85" x2="110" y2="85" stroke="currentColor" strokeWidth="0.5" opacity="0.05" />
+      </svg>
+    ),
+  },
+  'urologia': {
+    accent: '#4F46E5',
+    accentLight: 'rgba(79,70,229,0.08)',
+    accentBorder: 'rgba(79,70,229,0.25)',
+    accentGlow: 'rgba(79,70,229,0.15)',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10">
+        <path d="M24 8c-6 0-10 6-10 14s4 14 10 14 10-6 10-14-4-14-10-14z" stroke="currentColor" strokeWidth="1.8" />
+        <path d="M20 20c2-2 6-2 8 0" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" opacity="0.5" />
+      </svg>
+    ),
+    bgIllustration: (
+      <svg viewBox="0 0 200 160" fill="none" className="absolute inset-0 h-full w-full">
+        <ellipse cx="100" cy="90" rx="30" ry="25" stroke="currentColor" strokeWidth="0.5" opacity="0.06" />
+        <circle cx="100" cy="90" r="10" stroke="currentColor" strokeWidth="0.4" opacity="0.04" strokeDasharray="2 3" />
+      </svg>
+    ),
+  },
+  'oftalmologia': {
+    accent: '#0D9488',
+    accentLight: 'rgba(13,148,136,0.08)',
+    accentBorder: 'rgba(13,148,136,0.25)',
+    accentGlow: 'rgba(13,148,136,0.15)',
+    icon: (
+      <svg viewBox="0 0 48 48" fill="none" className="h-10 w-10">
+        <path d="M6 24c4-8 10-12 18-12s14 4 18 12c-4 8-10 12-18 12S10 32 6 24z" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="24" cy="24" r="6" stroke="currentColor" strokeWidth="1.5" />
+        <circle cx="24" cy="24" r="2.5" fill="currentColor" opacity="0.4" />
+      </svg>
+    ),
+    bgIllustration: (
+      <svg viewBox="0 0 200 160" fill="none" className="absolute inset-0 h-full w-full">
+        <path d="M40 90c20-25 40-35 60-35s40 10 60 35c-20 25-40 35-60 35s-40-10-60-35z" stroke="currentColor" strokeWidth="0.5" opacity="0.06" />
+        <circle cx="100" cy="90" r="12" stroke="currentColor" strokeWidth="0.4" opacity="0.05" />
+      </svg>
+    ),
+  },
 };
 
 export default function SpecialtyCard({ specialty }) {
