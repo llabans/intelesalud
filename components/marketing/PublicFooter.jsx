@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import AppLogo from '@/components/ui/AppLogo';
-import { Phone, Mail, ShieldCheck } from 'lucide-react';
+import { Mail, ShieldCheck } from 'lucide-react';
 
 export default function PublicFooter() {
   return (
@@ -38,18 +38,10 @@ export default function PublicFooter() {
             <p className="text-xs font-bold uppercase tracking-wider text-slate-900">Contacto</p>
             <div className="mt-2 flex flex-col gap-1.5 text-slate-500">
               <a
-                href="https://wa.me/51921977372?text=Hola,%20quiero%20información%20sobre%20InteleSalud"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 transition hover:text-cyan-800"
-              >
-                <Phone className="h-3.5 w-3.5" /> +51 921 977 372
-              </a>
-              <a
                 href="mailto:intelesalud@medicalcore.app"
                 className="inline-flex items-center gap-1.5 transition hover:text-cyan-800"
               >
-                <Mail className="h-3.5 w-3.5" /> Correo electrónico
+                <Mail className="h-3.5 w-3.5" /> intelesalud@medicalcore.app
               </a>
             </div>
           </div>
