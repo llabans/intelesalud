@@ -348,3 +348,19 @@ model AuditLog {
 
   user       User?    @relation(fields: [userId], references: [id])
 }
+
+model HealthArticle {
+  id        String   @id @default(cuid())
+  pubmedId  String   @unique
+  title     String
+  titleEs   String
+  summary   String
+  category  String
+  journal   String
+  pubDate   String
+  url       String
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  @@index([active, createdAt])
+}
